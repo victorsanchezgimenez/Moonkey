@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - SpawnManager
+  - Enemy
+  - DestroyEnemy
+  - Health
   layers:
   - Default
   - TransparentFX

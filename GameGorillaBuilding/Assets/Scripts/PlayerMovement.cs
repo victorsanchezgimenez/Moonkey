@@ -9,9 +9,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedX = 50f;
     [SerializeField] float speedY = 10f;
 
+    [Header("Screen limitation Gorilla")]
+    [SerializeField] float maxY;
+    [SerializeField] float minY;
+
     [Header("Gorila and PlayerGuide Transforms")]
     [SerializeField] Transform gorilla;
     [SerializeField] Transform playerGuide;
+
+    [Header("Joystick Stick")]
+    public Joystick joystick;
+    
     
     
     private float inputHorizontal;
@@ -20,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //Taking RigidBody Gorilla
+        //Initialize RigidBody Gorilla
         rb = GetComponent<Rigidbody>();
     }
 
@@ -31,14 +39,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovementAxis()
     {
-        //Inputs
-        inputHorizontal = Input.GetAxis("Horizontal");
-        inputVertical = Input.GetAxis("Vertical");
+        //Inputs joystick
+        inputHorizontal = joystick.Horizontal * speedX;
+        inputVertical = joystick.Vertical * speedY;
 
         //General move
-        //Rotation Left-Right
-        playerGuide.transform.Rotate(0f, inputHorizontal * Time.deltaTime * speedX, 0f, Space.Self);
+        //Rotation Left-Right (correction on move)
+        if(inputHorizontal != 0)
+        {
+            playerGuide.transform.Rotate(0f, -inputHorizontal * Time.deltaTime, 0f, Space.Self);
+        }
         //Transform Up-Down
-        transform.localPosition += new Vector3(0, inputVertical, 0) * Time.deltaTime * speedY;
+        if(inputVertical != 0)
+        {
+            transform.Translate(0, inputVertical * Time.deltaTime, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, minY, maxY), transform.localPosition.z);
+        }
     }
 }
