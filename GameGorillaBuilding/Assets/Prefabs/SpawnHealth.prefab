@@ -47,7 +47,7 @@ MonoBehaviour:
   gameobjectFallingPrefab: {fileID: 787644392102792653, guid: 87eeeb90b2a1a44459cccf30fe10c3c3,
     type: 3}
   minProbRange: 0
-  maxProbRange: 30
+  maxProbRange: 50
   actualProb: 5
   respawnTime: 1
   spawnActive: 1
