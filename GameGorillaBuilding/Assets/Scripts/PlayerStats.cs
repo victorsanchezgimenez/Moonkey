@@ -6,21 +6,23 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("General Stats Health Settings")]
     public int currentHealth = 3;
-    public int minHealth = 1;
+    public int minHealth = 0;
     public int maxHealth = 3;
 
+
+    //Damage
     public void HitProcess()
     {
-        if(currentHealth == minHealth)
+        currentHealth--;
+
+        if(currentHealth <= minHealth)
         {
             Debug.Log("Muerto");
         }
-        else
-        {
-            currentHealth--;
-        }
+        
     }
 
+    //Health
     public void HealthProcess()
     {
         if(currentHealth == maxHealth)

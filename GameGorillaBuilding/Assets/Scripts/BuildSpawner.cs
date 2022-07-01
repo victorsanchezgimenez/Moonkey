@@ -8,9 +8,9 @@ public class BuildSpawner : MonoBehaviour
     [Header("List of Prefabs Builds")]
     public List<GameObject> builds; 
 
-    
     private float offSet = 40f;
     
+    //Order list of builds
     void Start()
     {
         if(builds != null && builds.Count > 0)
@@ -19,6 +19,7 @@ public class BuildSpawner : MonoBehaviour
         }
     }
 
+    //Move the build
     public void MoveBuild()
     {
         GameObject moveBuild = builds[0];

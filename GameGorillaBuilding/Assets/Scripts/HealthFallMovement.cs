@@ -18,7 +18,7 @@ public class HealthFallMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
     }
-
+    
     void FixedUpdate()
     {
         MovementY();

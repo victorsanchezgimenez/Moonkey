@@ -9,6 +9,9 @@ public class EnemyFallMovement : MonoBehaviour
     [SerializeField] float speed = 1f;
     [Tooltip("Smooth speed")]
     [SerializeField][Range(0f, 1f)] float smooth = 1f;
+    [Header("Invencible Settings")]
+    [SerializeField] GameObject player;
+    PlayerCollisionHandler playerCollision;
 
     Rigidbody rb;
 
@@ -16,6 +19,8 @@ public class EnemyFallMovement : MonoBehaviour
     {
         //Initialize Rigidbody
         rb = GetComponent<Rigidbody>();
+        //Get script of playercollision for invencibility
+        playerCollision = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCollisionHandler>();
 
     }
 
@@ -24,7 +29,7 @@ public class EnemyFallMovement : MonoBehaviour
         MovementY();
     }
 
-
+    //Contiuous movement
     private void MovementY()
     {
         transform.position += new Vector3(0, -speed * smooth * Time.deltaTime, 0);
@@ -45,8 +50,10 @@ public class EnemyFallMovement : MonoBehaviour
         }
     }
 
+    //Destroy gameobject
     void DestroyGameObject()
     {
         Destroy(this.gameObject);
     }
+    
 }

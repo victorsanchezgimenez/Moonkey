@@ -6,33 +6,38 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerStats))]
 public class PlayerCollisionHandler : MonoBehaviour
 {
-    [Header("General Settings for Spawn Builds")]
-    public SpawnManager spawnManager;
-
     [Header("Access to stats of Player")]
-    PlayerStats stats;
+    [SerializeField] PlayerStats stats;
+
+    [Header("Invencible Settings")]
+    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] CapsuleCollider playerCollider;
+    [SerializeField] float timeInvencible = 0.2f;
+    public bool isInvencible = false;
 
     void Start()
     {
-        stats = GetComponent<PlayerStats>();
+
     }
+
     private void OnTriggerEnter(Collider other)
     {
         switch(other.gameObject.tag)
         {
-            //Taking damage
+            //Taking damage and inmortality
             case "Enemy":
-                TriggerEnemy();
+                if(!isInvencible)
+                {
+                    TriggerEnemy();
+                    StartCoroutine(Invencible());
+                }
                 break;
             
+            //Health
             case "Health":
                 TriggerHealth();
                 break;
             
-            //Spawn the builds constantly
-            case "SpawnManager":
-                TriggerSpawnBuilds();
-                break;
         }
     }
 
@@ -47,9 +52,28 @@ public class PlayerCollisionHandler : MonoBehaviour
         stats.HealthProcess();
     }
 
-    private void TriggerSpawnBuilds()
+    //Invencible function
+    private IEnumerator Invencible()
     {
-        spawnManager.SpawnTriggerEntered();
+        isInvencible = true;
+        meshRenderer.enabled = false;
+        playerCollider.enabled = false;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = true;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = false;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = true;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = false;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = true;
+        yield return new WaitForSeconds(timeInvencible);
+        meshRenderer.enabled = false;
+        yield return new WaitForSeconds(timeInvencible);
+        playerCollider.enabled = true;
+        meshRenderer.enabled = true;
+        isInvencible = false;
     }
 
 
