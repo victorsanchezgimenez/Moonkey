@@ -8,8 +8,14 @@ public class PlayerStats : MonoBehaviour
     public int currentHealth = 3;
     public int minHealth = 0;
     public int maxHealth = 3;
+    [Header("Getting GameObject Game Over Menu")]
+    [SerializeField] GameObject gameOverMenu;
 
-
+    void Start() 
+    {
+        //Disable gameOverMenu at start of game
+        gameOverMenu.SetActive(false);    
+    }
     //Damage
     public void HitProcess()
     {
@@ -17,7 +23,8 @@ public class PlayerStats : MonoBehaviour
 
         if(currentHealth <= minHealth)
         {
-            Debug.Log("Muerto");
+            Time.timeScale = 0f;
+            gameOverMenu.SetActive(true);
         }
         
     }

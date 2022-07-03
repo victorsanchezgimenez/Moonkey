@@ -12,7 +12,7 @@ public class ProgressBarScore : MonoBehaviour
     [Header("Getting necessary GameObjects")]
     [SerializeField] Slider progressBar;
     [SerializeField] TextMeshProUGUI numberProgressBar; 
-
+    [SerializeField] InGameSettingsManager pauseActive;
     PlayerStats playerStats;
 
     void Update()
@@ -30,7 +30,8 @@ public class ProgressBarScore : MonoBehaviour
 
     private void RunningBar()
     {
-        progressBar.value += speedBar;
+        if(!pauseActive.isPaused)
+            progressBar.value += speedBar;
     }
 
     private void FinishGame()

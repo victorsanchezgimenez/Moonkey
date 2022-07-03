@@ -21,7 +21,16 @@ public class EnemyFallMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //Get script of playercollision for invencibility
         playerCollision = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCollisionHandler>();
+        //GetBirdEnemy
+        BirdEnemy();
+    }
 
+    private void BirdEnemy()
+    {
+        if (this.gameObject.tag == "BirdEnemy")
+        {
+            this.transform.parent = GameObject.FindWithTag("SpawnerBird").transform;
+        }
     }
 
     void FixedUpdate()

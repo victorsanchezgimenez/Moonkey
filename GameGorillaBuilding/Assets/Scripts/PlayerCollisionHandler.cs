@@ -26,6 +26,7 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             //Taking damage and inmortality
             case "Enemy":
+            case "EnemyBird":
                 if(!isInvencible)
                 {
                     TriggerEnemy();

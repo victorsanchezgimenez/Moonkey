@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - DestroyEnemy
   - Health
+  - BirdEnemy
+  - SpawnerBird
+  - AudioManager
   layers:
   - Default
   - TransparentFX

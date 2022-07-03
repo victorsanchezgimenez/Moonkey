@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("General Settings")]
     [Tooltip("Movement speed of Gorilla")]
-    [SerializeField] float speedX = 50f;
-    [SerializeField] float speedY = 10f;
+    [SerializeField] float speedX = 35;
+    [SerializeField] float speedY = 7;
 
     [Header("Screen limitation Gorilla")]
     [SerializeField] float maxY;
@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     private void MovementAxis()
     {
         //Inputs joystick
-        inputHorizontal = joystick.Horizontal * speedX;
-        inputVertical = joystick.Vertical * speedY;
+        inputHorizontal = joystick.Horizontal * -speedX;
+        inputVertical = joystick.Vertical * -speedY;
 
         //General move
         //Rotation Left-Right (correction on move)
