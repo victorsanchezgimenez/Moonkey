@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Playables;
 
 public class MenuSceneManager : MonoBehaviour
 {   
@@ -11,7 +12,6 @@ public class MenuSceneManager : MonoBehaviour
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject mainTitle;
-    [SerializeField] Image background;
     [Header("Tutorials Screens GameObject")]
     [SerializeField] GameObject tutorialsScreens;
     [Header("AudioSource Component")]
@@ -26,6 +26,9 @@ public class MenuSceneManager : MonoBehaviour
     [SerializeField] Animator animatorSettings;
     [Header("Animator Transition Tutorial Initialize")]
     [SerializeField] Animator animatorTutorial;
+    [SerializeField] Button playButtonTutorial;
+    [Header("Animator Cinematic Timeline Initialize")]
+    [SerializeField] PlayableDirector director;
      
     void Awake()
     {
@@ -48,7 +51,7 @@ public class MenuSceneManager : MonoBehaviour
     //Start
     public void OnClickPlayButton()
     {
-        StartCoroutine(isTransitioning());
+        StartCoroutine(isTransitioningTutorial());
     }
 
     //Tutorial Screen 1
@@ -75,7 +78,8 @@ public class MenuSceneManager : MonoBehaviour
     //Tutorial Screen 4
     public void OnClickTutorialNextFour()
     {
-        StartCoroutine(isTransitioning());
+        playButtonTutorial.interactable = false;
+        StartCoroutine(isTransitioningCinematic());
     }
 
     //Make transitions between gameobjects
@@ -106,15 +110,13 @@ public class MenuSceneManager : MonoBehaviour
 
 
 
-    //Clouds transition
-    IEnumerator isTransitioning()
+    //Clouds transition start tutorial
+    IEnumerator isTransitioningTutorial()
     {
         playButton.interactable = false;
         settingsButton.interactable = false;
         StartCloudEffect();
         yield return new WaitForSeconds(timeWait);
-        //BackgroundColor
-        background.color = new Color32(0, 87, 255, 255);
         EndCloudEffect();
         ActiveTutorial();
         mainTitle.SetActive(false);
@@ -140,5 +142,17 @@ public class MenuSceneManager : MonoBehaviour
     private void EndCloudEffect()
     {
         animatorClouds.SetBool("isPlaying", false);
+    }
+
+    //Cinematic transition
+    IEnumerator isTransitioningCinematic()
+    {
+        StartCloudEffect();
+        yield return new WaitForSeconds(timeWait);
+        tutorialsScreens.SetActive(false);
+        EndCloudEffect();
+        //Timeline start here
+        director.Play();
+        yield return new WaitForSeconds(timeWait);     
     }
 }

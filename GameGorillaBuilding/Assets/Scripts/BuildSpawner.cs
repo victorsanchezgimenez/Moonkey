@@ -8,6 +8,7 @@ public class BuildSpawner : MonoBehaviour
     [Header("List of Prefabs Builds")]
     public List<GameObject> builds; 
 
+    private float yDesviation = 0.12f;
     private float offSet = 40f;
     
     //Order list of builds
@@ -25,7 +26,7 @@ public class BuildSpawner : MonoBehaviour
         GameObject moveBuild = builds[0];
         builds.Remove(moveBuild);
         float newY = builds[builds.Count - 1].transform.position.y + offSet;
-        moveBuild.transform.position = new Vector3(0, newY, 0);
+        moveBuild.transform.position = new Vector3(0, newY - yDesviation, 0);
         builds.Add(moveBuild);
     }
 }
