@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f854d7b45f17740a2629d46b90b78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameobjectFallingPrefab: {fileID: 787644392102792653, guid: fc92fcf29ad6ea04481fb8ba4e02efe9,
+  gameobjectFallingPrefab: {fileID: 1223437409572343040, guid: 1722e1940d3904c45a13c46f78825ea8,
     type: 3}
-  minProbRange: 0
-  maxProbRange: 40
-  actualProb: 5
-  respawnTime: 1
+  minProbRange: 2
+  maxProbRange: 5
+  actualProb: 3
+  respawnTime: 0.2
   spawnActive: 1

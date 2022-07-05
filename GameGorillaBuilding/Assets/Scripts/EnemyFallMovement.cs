@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,9 @@ public class EnemyFallMovement : MonoBehaviour
     [SerializeField] float speed = 1f;
     [Tooltip("Smooth speed")]
     [SerializeField][Range(0f, 1f)] float smooth = 1f;
-    [Header("Invencible Settings")]
-    [SerializeField] GameObject player;
+    
+    //Invencible settings
     PlayerCollisionHandler playerCollision;
-
     Rigidbody rb;
 
     void Start()
@@ -23,7 +23,10 @@ public class EnemyFallMovement : MonoBehaviour
         playerCollision = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerCollisionHandler>();
         //GetBirdEnemy
         BirdEnemy();
+        ScaffoldEnemy();
     }
+
+    
 
     private void BirdEnemy()
     {
@@ -33,9 +36,19 @@ public class EnemyFallMovement : MonoBehaviour
         }
     }
 
+    private void ScaffoldEnemy()
+    {
+        if (this.gameObject.tag == "ScaffoldEnemy")
+        {
+            Transform target = GameObject.FindWithTag("ScaffoldPointer").transform;
+            transform.LookAt(new Vector3(target.position.x, transform.position.y, target.position.z));
+        }
+    }
+
     void FixedUpdate()
     {
         MovementY();
+        
     }
 
     //Contiuous movement
@@ -50,10 +63,8 @@ public class EnemyFallMovement : MonoBehaviour
         switch(other.gameObject.tag)
         {
             case "DestroyEnemy":
-                DestroyGameObject();
-                break;
-            
             case "Player":
+            case "ScaffoldEnemy":
                 DestroyGameObject();
                 break;
         }

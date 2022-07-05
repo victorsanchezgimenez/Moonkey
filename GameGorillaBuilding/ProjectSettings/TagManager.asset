@@ -11,6 +11,8 @@ TagManager:
   - BirdEnemy
   - SpawnerBird
   - AudioManager
+  - ScaffoldPointer
+  - ScaffoldEnemy
   layers:
   - Default
   - TransparentFX

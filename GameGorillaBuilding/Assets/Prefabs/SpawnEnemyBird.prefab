@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f854d7b45f17740a2629d46b90b78d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameobjectFallingPrefab: {fileID: 787644392102792653, guid: 53bfcca53ffc5f740b703b575d758408,
+  gameobjectFallingPrefab: {fileID: 1879581886640764, guid: eb9f1673ed98c524691a87c29bf6bafd,
     type: 3}
   minProbRange: 0
   maxProbRange: 40

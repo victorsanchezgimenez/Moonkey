@@ -27,8 +27,13 @@ public class MenuSceneManager : MonoBehaviour
     [Header("Animator Transition Tutorial Initialize")]
     [SerializeField] Animator animatorTutorial;
     [SerializeField] Button playButtonTutorial;
-    [Header("Animator Cinematic Timeline Initialize")]
+    [Header("Animator Cinematic Timeline And FadeIn Initialize")]
     [SerializeField] PlayableDirector director;
+    [SerializeField] Animator fadeAnimation; 
+
+    //timers
+    private float timeWaitCinematic = 9.0f;
+    private float timeWaitFadeIn = 2.5f;
      
     void Awake()
     {
@@ -153,6 +158,11 @@ public class MenuSceneManager : MonoBehaviour
         EndCloudEffect();
         //Timeline start here
         director.Play();
-        yield return new WaitForSeconds(timeWait);     
+        yield return new WaitForSeconds(timeWaitCinematic);
+        //Start Fade
+        fadeAnimation.SetBool("FadeIn", true);
+        yield return new WaitForSecondsRealtime(timeWaitFadeIn);
+        //Charge Game Level
+        SceneManager.LoadScene(1); 
     }
 }

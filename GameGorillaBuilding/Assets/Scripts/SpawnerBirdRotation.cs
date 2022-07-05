@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpawnerBirdRotation : MonoBehaviour
 {
-    [Header("General Settings")]
+    [Header("General Settings Rotation")]
     [SerializeField] float speed = 20f;
     [SerializeField][Range(0f, 1f)] float smooth = 1f;
 

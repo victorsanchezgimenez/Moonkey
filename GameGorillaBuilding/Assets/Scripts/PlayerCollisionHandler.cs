@@ -10,7 +10,7 @@ public class PlayerCollisionHandler : MonoBehaviour
     [SerializeField] PlayerStats stats;
 
     [Header("Invencible Settings")]
-    [SerializeField] MeshRenderer meshRenderer;
+    [SerializeField] SkinnedMeshRenderer meshRenderer;
     [SerializeField] CapsuleCollider playerCollider;
     [SerializeField] float timeInvencible = 0.2f;
     public bool isInvencible = false;
@@ -26,7 +26,8 @@ public class PlayerCollisionHandler : MonoBehaviour
         {
             //Taking damage and inmortality
             case "Enemy":
-            case "EnemyBird":
+            case "ScaffoldEnemy":
+            case "BirdEnemy":
                 if(!isInvencible)
                 {
                     TriggerEnemy();

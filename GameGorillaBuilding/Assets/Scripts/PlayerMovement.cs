@@ -52,7 +52,9 @@ public class PlayerMovement : MonoBehaviour
         //Transform Up-Down
         if(inputVertical != 0)
         {
-            transform.Translate(0, inputVertical * Time.deltaTime, 0);
+            //transform.Translate(0, inputVertical * Time.deltaTime, 0);
+            //transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, minY, maxY), transform.localPosition.z);
+            transform.Translate(0, 0, inputVertical * Time.deltaTime);
             transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, minY, maxY), transform.localPosition.z);
         }
     }
