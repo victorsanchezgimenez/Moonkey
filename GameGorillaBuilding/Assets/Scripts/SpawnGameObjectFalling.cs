@@ -8,10 +8,10 @@ public class SpawnGameObjectFalling : MonoBehaviour
     [Header("GameObject Prefab")]
     [SerializeField] GameObject gameobjectFallingPrefab;
     [Header("General Probability Settings")]
-    [SerializeField] int minProbRange = 0;
-    [SerializeField] int maxProbRange = 15;
-    [SerializeField] int actualProb = 5;
-    [SerializeField] float respawnTime = 1.5f;
+    public int minProbRange = 0;
+    public int maxProbRange = 15;
+    public int actualProb = 5;
+    public float respawnTime = 1.5f;
 
     [HideInInspector]
     public bool spawnActive = true;

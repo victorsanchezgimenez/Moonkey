@@ -15,6 +15,7 @@ public class MenuSceneManager : MonoBehaviour
     [Header("Tutorials Screens GameObject")]
     [SerializeField] GameObject tutorialsScreens;
     [Header("AudioSource Component")]
+    [SerializeField] AudioSource audioSource;
     [SerializeField] AudioManager audioManager;
     [Header("Animator Tranistion Cloud Initialize")]
     [SerializeField] Animator animatorClouds;
@@ -29,7 +30,12 @@ public class MenuSceneManager : MonoBehaviour
     [SerializeField] Button playButtonTutorial;
     [Header("Animator Cinematic Timeline And FadeIn Initialize")]
     [SerializeField] PlayableDirector director;
-    [SerializeField] Animator fadeAnimation; 
+    [SerializeField] Animator fadeAnimation;
+    [Header("Button Effect Initialize")]
+    [SerializeField] AudioClip clip;
+    [SerializeField] AudioSource buttonAudioComponent;
+    [SerializeField][Range(0f, 1f)] float volumeScale = 0.7f;
+    
 
     //timers
     private float timeWaitCinematic = 9.0f;
@@ -37,6 +43,7 @@ public class MenuSceneManager : MonoBehaviour
      
     void Awake()
     {
+        
     }
     
     void Update() 
@@ -46,8 +53,14 @@ public class MenuSceneManager : MonoBehaviour
 
     private void CheckAudioManager()
     {
-        if (audioManager == null)
+        //if (audioManager == null)
+        //{
+        //    audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+        //}
+
+        if(audioSource == null ||audioManager == null)
         {
+            audioSource = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
             audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
         }
     }
@@ -56,12 +69,22 @@ public class MenuSceneManager : MonoBehaviour
     //Start
     public void OnClickPlayButton()
     {
+        SoundButton();
         StartCoroutine(isTransitioningTutorial());
+    }
+
+    private void SoundButton()
+    {
+        if (!audioSource.mute)
+        {
+            buttonAudioComponent.PlayOneShot(clip, volumeScale);
+        }
     }
 
     //Tutorial Screen 1
     public void OnClickTutorialNextOne()
     { 
+        SoundButton();
         animatorTutorial.SetBool("isTutorialOne", false);
         animatorTutorial.SetBool("isTutorialTwo", true);
     }
@@ -69,6 +92,7 @@ public class MenuSceneManager : MonoBehaviour
     //Tutorial Screen 2
     public void OnClickTutorialNextTwo()
     {
+        SoundButton();
         animatorTutorial.SetBool("isTutorialTwo", false);
         animatorTutorial.SetBool("isTutorialThree", true);  
     }
@@ -76,6 +100,7 @@ public class MenuSceneManager : MonoBehaviour
     //Tutorial Screen 3
     public void OnClickTutorialNextThree()
     {
+        SoundButton();
         animatorTutorial.SetBool("isTutorialThree", false);
         animatorTutorial.SetBool("isTutorialFour", true);  
     }
@@ -83,13 +108,16 @@ public class MenuSceneManager : MonoBehaviour
     //Tutorial Screen 4
     public void OnClickTutorialNextFour()
     {
+        SoundButton();
         playButtonTutorial.interactable = false;
         StartCoroutine(isTransitioningCinematic());
     }
 
     //Make transitions between gameobjects
     public void OnClickSettingsButton()
-    {      
+    {   
+        SoundButton();
+         
         animatorMenu.SetBool("isNotMenu", true);  
         animatorSettings.SetBool("isSettingsMenu", true);
     }
@@ -97,6 +125,8 @@ public class MenuSceneManager : MonoBehaviour
     //Make transitions between gameobjects
     public void OnClickBackSettingsMenu()
     {
+        SoundButton();
+        
         animatorMenu.SetBool("isNotMenu", false);
         animatorSettings.SetBool("isSettingsMenu", false);   
     }
@@ -104,12 +134,16 @@ public class MenuSceneManager : MonoBehaviour
     //OFF Button Music
     public void OnClickMuteMusic()
     {
+        SoundButton();
+        
         audioManager.MuteMusic(true);
     }
 
     //ON Button Music
     public void OnClickActiveMusic()
     {
+        SoundButton();
+        
         audioManager.MuteMusic(false);
     }
 
@@ -163,6 +197,6 @@ public class MenuSceneManager : MonoBehaviour
         fadeAnimation.SetBool("FadeIn", true);
         yield return new WaitForSecondsRealtime(timeWaitFadeIn);
         //Charge Game Level
-        SceneManager.LoadScene(1); 
+        SceneManager.LoadScene(1);
     }
 }

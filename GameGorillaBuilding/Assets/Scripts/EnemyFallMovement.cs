@@ -10,10 +10,27 @@ public class EnemyFallMovement : MonoBehaviour
     [SerializeField] float speed = 1f;
     [Tooltip("Smooth speed")]
     [SerializeField][Range(0f, 1f)] float smooth = 1f;
+
+    [Header("Getting AudioSource Music And Mute")]
+    [SerializeField] AudioSource audioSourceMusic;
+
+    [Header("AudioSource monkey")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip clip;
+    [SerializeField][Range(0f, 1f)] float volumeScale = 0.5f;
+
+    [Header("ParticleSystem GameObject Initialize")]
+    [SerializeField] GameObject crashParticles;
+    
     
     //Invencible settings
     PlayerCollisionHandler playerCollision;
     Rigidbody rb;
+    
+    void Awake()
+    {
+        CheckAudioSourceMusic();
+    }
 
     void Start()
     {
@@ -24,6 +41,8 @@ public class EnemyFallMovement : MonoBehaviour
         //GetBirdEnemy
         BirdEnemy();
         ScaffoldEnemy();
+        //Get own audiosource
+        audioSource = GetComponent<AudioSource>();
     }
 
     
@@ -63,17 +82,44 @@ public class EnemyFallMovement : MonoBehaviour
         switch(other.gameObject.tag)
         {
             case "DestroyEnemy":
+                DestroyGameObject();
+                break;
             case "Player":
-            case "ScaffoldEnemy":
+                ActivateParticles();
+                SoundCollision();
                 DestroyGameObject();
                 break;
         }
     }
 
+   
     //Destroy gameobject
     void DestroyGameObject()
     {
         Destroy(this.gameObject);
+    }
+
+
+    private void CheckAudioSourceMusic()
+    {
+        if (audioSourceMusic == null)
+        {
+            audioSourceMusic = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+        }
+    }
+
+    void SoundCollision()
+    {
+        if(!audioSourceMusic.mute)
+        {
+            audioSource.PlayOneShot(clip, volumeScale);
+        }
+    }
+
+    private void ActivateParticles()
+    {
+        Debug.Log("Entering");
+        Instantiate(crashParticles, transform.position, Quaternion.identity);
     }
     
 }

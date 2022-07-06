@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CloudsFadeOut
-  m_Speed: 0.03
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6597386024862719}
@@ -218,7 +218,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CloudsFadeOut 0
-  m_Speed: 0.03
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4508886874435329147}
@@ -270,7 +270,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CloudsFadeIn
-  m_Speed: 0.03
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1707015550240821039}

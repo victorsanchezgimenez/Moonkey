@@ -40,16 +40,6 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //Play music
-    //void Update()
-    //{
-    //    if(!audioSource.isPlaying)
-    //    {
-    //        audioSource.Play();
-    //    }
-    //}
-
-
     //Mute Sound
     public void MuteMusic(bool isMute)
     {

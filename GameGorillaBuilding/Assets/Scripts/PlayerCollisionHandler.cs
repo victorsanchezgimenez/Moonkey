@@ -15,9 +15,26 @@ public class PlayerCollisionHandler : MonoBehaviour
     [SerializeField] float timeInvencible = 0.2f;
     public bool isInvencible = false;
 
-    void Start()
-    {
+    [Header("Getting AudioSource Music And Mute")]
+    [SerializeField] AudioSource audioSourceMusic;
 
+    [Header("AudioSource monkey")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip[] clip;
+    [SerializeField][Range(0f, 1f)] float volumeScale = 0.5f;
+
+
+    void Awake()
+    {
+        CheckAudioSourceMusic();
+    }
+
+    private void CheckAudioSourceMusic()
+    {
+        if (audioSourceMusic == null)
+        {
+            audioSourceMusic = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -30,6 +47,7 @@ public class PlayerCollisionHandler : MonoBehaviour
             case "BirdEnemy":
                 if(!isInvencible)
                 {
+                    PlayAudioMonkey(0);
                     TriggerEnemy();
                     StartCoroutine(Invencible());
                 }
@@ -37,13 +55,23 @@ public class PlayerCollisionHandler : MonoBehaviour
             
             //Health
             case "Health":
+                PlayAudioMonkey(1);
                 TriggerHealth();
                 break;
+            
+            
             
         }
     }
 
+    //Check if game is muted or not and if its not, play sound
+    void PlayAudioMonkey(int sound)
+    {
+        if(!audioSourceMusic.mute)
+            audioSource.PlayOneShot(clip[sound], volumeScale);
 
+    }
+    
     private void TriggerEnemy()
     {
         stats.HitProcess();
