@@ -53,10 +53,6 @@ public class MenuSceneManager : MonoBehaviour
 
     private void CheckAudioManager()
     {
-        //if (audioManager == null)
-        //{
-        //    audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-        //}
 
         if(audioSource == null ||audioManager == null)
         {
@@ -160,7 +156,7 @@ public class MenuSceneManager : MonoBehaviour
         ActiveTutorial();
         mainTitle.SetActive(false);
         mainMenu.SetActive(false);
-        //SceneManager.LoadScene(1);
+        
 
     }
 

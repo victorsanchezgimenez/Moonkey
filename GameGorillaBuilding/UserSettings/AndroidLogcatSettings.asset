@@ -1,9 +1,9 @@
 {
     "m_SelectedDeviceId": "c39d6b48",
     "m_SelectedPackage": {
-        "deviceId": "c39d6b48",
-        "name": "com.DefaultCompany.GameGorillaBuilding",
-        "processId": 13379,
+        "deviceId": "",
+        "name": "",
+        "processId": 0,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -11,91 +11,37 @@
         {
             "deviceId": "c39d6b48",
             "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 28304,
+            "processId": 25946,
             "exited": true
         },
         {
             "deviceId": "c39d6b48",
             "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 29339,
+            "processId": 26441,
             "exited": true
         },
         {
             "deviceId": "c39d6b48",
             "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 30426,
+            "processId": 20369,
             "exited": true
         },
         {
             "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 31021,
+            "name": "com.OrbitalDevelop.Moonkey",
+            "processId": 11150,
             "exited": true
         },
         {
             "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 31363,
+            "name": "com.OrbitalDevelop.Moonkey",
+            "processId": 12390,
             "exited": true
         },
         {
             "deviceId": "c39d6b48",
-            "name": "com.miui.home",
-            "processId": 2696,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 479,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 1378,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 6055,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 6631,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 8107,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 8448,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 10585,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 13015,
-            "exited": false
-        },
-        {
-            "deviceId": "c39d6b48",
-            "name": "com.DefaultCompany.GameGorillaBuilding",
-            "processId": 13379,
+            "name": "com.whatsapp",
+            "processId": 4296,
             "exited": false
         }
     ],

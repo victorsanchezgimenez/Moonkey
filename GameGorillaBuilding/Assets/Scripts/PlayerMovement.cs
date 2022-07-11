@@ -47,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
         //Rotation Left-Right (correction on move)
         if(inputHorizontal != 0)
         {
-            playerGuide.transform.Rotate(0f, -inputHorizontal * Time.deltaTime, 0f, Space.Self);
+            playerGuide.transform.Rotate(0f, inputHorizontal * Time.deltaTime, 0f, Space.Self);
         }
         //Transform Up-Down
         if(inputVertical != 0)
         {
-            transform.Translate(0, 0, inputVertical * Time.deltaTime);
+            transform.Translate(0, 0, -inputVertical * Time.deltaTime);
             transform.localPosition = new Vector3(transform.localPosition.x, Mathf.Clamp(transform.localPosition.y, minY, maxY), transform.localPosition.z);
         }
     }

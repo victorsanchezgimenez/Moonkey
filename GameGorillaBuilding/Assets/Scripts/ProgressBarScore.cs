@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 
@@ -20,8 +21,15 @@ public class ProgressBarScore : MonoBehaviour
     [SerializeField] GameObject[] enemyScaffoldSpawner;
     [SerializeField] GameObject[] healthSpawner;
 
+    [Header("Getting Player GameObject")]
+    [SerializeField] GameObject player;
+
+    [Header("Components Cutscene And Variables")]
+    [SerializeField] Joystick joystick;
+    [SerializeField] Animator fadeIn;
+    [SerializeField] float waitTime = 2.5f;
+    [SerializeField] float speedLeaveScenePlayer = 7f;
     
-    PlayerStats playerStats;
 
     //Difficults trigger one time
     private bool difOne = false, difTwo = false, difThree = false, difFour = false;
@@ -31,6 +39,7 @@ public class ProgressBarScore : MonoBehaviour
         RunningBar();
         UpdateNumberProgressBar();
         DifficultLevels();
+        FinishGame();
 
     }
 
@@ -51,9 +60,23 @@ public class ProgressBarScore : MonoBehaviour
     {
         if(progressBar.value == progressBar.maxValue)
         {
-            //DO CINEMATIC END
+            StartCoroutine(EndGameTransition());
         }
 
+    }
+
+    IEnumerator EndGameTransition()
+    {
+            //Disable character collisions and controller
+            player.GetComponent<CapsuleCollider>().enabled = false;
+            joystick.enabled = false;
+            //Move character
+            player.transform.Translate(0, 0, speedLeaveScenePlayer * Time.deltaTime);
+            //Start fade animation
+            fadeIn.SetBool("FadeOut", false);
+            yield return new WaitForSeconds(waitTime);
+            //Load Scene Endgame
+            SceneManager.LoadScene(2);
     }
 
     //Level difficulties
@@ -76,39 +99,39 @@ public class ProgressBarScore : MonoBehaviour
         else if(progressBar.value > 25f && progressBar.value < 50f && !difTwo)
         {
             //Plant Spawner
-            UpgradeStatsDifficult(enemyFallSpawner, 0, 9, 5, 1f);
+            UpgradeStatsDifficult(enemyFallSpawner, 0, 8, 5, 1f);
             //Eagle Spawner
-            UpgradeStatsDifficult(enemyBirdSpawner, 0, 14, 5, 1f);
+            UpgradeStatsDifficult(enemyBirdSpawner, 0, 12, 5, 1f);
             //Scaffold Spawner
-            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 19, 5, 1f);
+            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 15, 5, 1f);
             //Health Spawner
-            UpgradeStatsDifficult(healthSpawner, 0, 39, 5, 1f);
+            UpgradeStatsDifficult(healthSpawner, 0, 35, 5, 1f);
             difTwo = true;
         }
 
         else if(progressBar.value > 50f && progressBar.value < 75f && !difThree)
         {
             //Plant Spawner
-            UpgradeStatsDifficult(enemyFallSpawner, 0, 8, 5, 1f);
+            UpgradeStatsDifficult(enemyFallSpawner, 0, 7, 5, 1f);
             //Eagle Spawner
-            UpgradeStatsDifficult(enemyBirdSpawner, 0, 13, 5, 1f);
+            UpgradeStatsDifficult(enemyBirdSpawner, 0, 9, 5, 1f);
             //Scaffold Spawner
-            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 18, 5, 1f);
+            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 11, 5, 1f);
             //Health Spawner
-            UpgradeStatsDifficult(healthSpawner, 0, 38, 5, 1f);
+            UpgradeStatsDifficult(healthSpawner, 0, 35, 5, 1f);
             difThree = true;
         }
 
         else if(progressBar.value > 75f && !difFour)
         {
             //Plant Spawner
-            UpgradeStatsDifficult(enemyFallSpawner, 0, 7, 5, 1f);
+            UpgradeStatsDifficult(enemyFallSpawner, 0, 6, 3, 1f);
             //Eagle Spawner
-            UpgradeStatsDifficult(enemyBirdSpawner, 0, 12, 5, 1f);
+            UpgradeStatsDifficult(enemyBirdSpawner, 0, 8, 5, 1f);
             //Scaffold Spawner
-            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 17, 5, 1f);
+            UpgradeStatsDifficult(enemyScaffoldSpawner, 0, 10, 5, 1f);
             //Health Spawner
-            UpgradeStatsDifficult(healthSpawner, 0, 37, 5, 1f);
+            UpgradeStatsDifficult(healthSpawner, 0, 30, 5, 1f);
             difFour = true;
         }
     }
